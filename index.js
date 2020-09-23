@@ -175,10 +175,10 @@ function filterByWord(array, string) {
 	
 	for (const index in array) {
 		if (array[index].includes(string)) {
-			console.log(array[index]);
-		}
+			filteredArray.push(array[index]);
+			}
 	}
-
+	return filteredArray
 }
 
 const chocFlavs = filterByWord(originalFlavors, "Chocolate")
