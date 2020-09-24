@@ -31,6 +31,8 @@ var originalFlavors = [
     "Vanilla",
     "Vanilla Burnt Almond"]
 
+
+// Part of Task 6 to backup original flavor menu
 const origFlavsBackup = copy(originalFlavors, []);
 
 /* Task 1: Confirm that the array is exactly 31 flavors. Your function should accept:
@@ -45,6 +47,7 @@ i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
 function is31Flavors(menu) {
 
+	// gets length of incoming array and returns true if === 31
 	let len = menu.length;
 	if (len === 31) {
 		return true;
@@ -69,7 +72,9 @@ For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainb
 
 function addFlavor(currMenu, newFlav) {
 
+	// add new flavor to front of array
 	currMenu.unshift(newFlav);
+	// console.log new array
 	console.log(currMenu);
 
 }
@@ -88,7 +93,9 @@ For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", 
 
 function removeLastFlavor(currMenu) {
 
+	// remove last item from array
 	currMenu.pop();
+	// console.log new array
 	console.log(currMenu);
 
 }
@@ -127,8 +134,11 @@ Hint: You can use .splice() for this
 
 function removeFlavorByName(menu, flavor) {
 
-	let flavIndex = menu.indexOf(flavor);
+	// finds the flavor by name and saves the index to a variable
+	const flavIndex = menu.indexOf(flavor);
+	// splices out the flavor using saved inex
 	menu.splice(flavIndex, 1);
+	// returns new array
 	return menu;
 
 }
@@ -145,12 +155,14 @@ and should return a new array that is identical to the old array. You can name t
 
 function copy( origArray, newArray ) {
 
+	// creates a clone of origArray and stores in newArray
 	newArray = [...origArray]
 	return newArray
+	
+	// new array is declared and function is called on line 34 to truly capture the original array before tasks 1-5 run on it.
 
 }
 
-//Declared new array and called function on line 34 to truly capture the original array before tasks 1-5 run on it.q
 
 console.log(origFlavsBackup);
 
@@ -171,8 +183,12 @@ hint - you can use the .includes method to help you solve this */
 
 function filterByWord(array, string) {
 
-	let filteredArray = []
+	// declare empty array
+	const filteredArray = []
 	
+	
+	// for each index in the array this statement will check whether it includes the passed in string.
+	// if it does it will push the element to our new array declared above.
 	for (const index in array) {
 		if (array[index].includes(string)) {
 			filteredArray.push(array[index]);
@@ -181,6 +197,7 @@ function filterByWord(array, string) {
 	return filteredArray
 }
 
+// saves resulting array from function to a variable
 const chocFlavs = filterByWord(originalFlavors, "Chocolate")
 
 console.log(chocFlavs)
@@ -197,11 +214,27 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength( /*code here*/ ) {
+function getAverageWordLength(array) {
 
-	/*code here*/
+	// declare variables to be added to
+	let totalWords = 0
+	let totalItems = 0
 
+	for (let index in array) {
+		// for each index, split each word to elements in an array
+		let words = array[index].split(" ");
+		// add the number of indexes (words) to the words variable
+		totalWords = totalWords + words.length;
+		// add 1 to the number of items
+		totalItems++;
+		
+	}
+	// divide to get average
+	return totalWords / totalItems
+	
 }
+
+console.log(getAverageWordLength(origFlavsBackup))
 
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
