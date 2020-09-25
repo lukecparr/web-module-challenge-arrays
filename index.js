@@ -318,8 +318,37 @@ var regionalFlavors = ["Pink Bubblegum",
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"]
 
-function getRandomFlavors( /*code here*/ ) {
-
-	/*code here*/
-
+function getRandomFlavors(menu1, menu2, menu3) {
+	
+	//combine all menu items in one array
+	const allFlavors = menu1.concat(menu2, menu3)
+	//declare empty array
+	const newMenu = []
+	
+	//until the length of newMenu reaches 31 flavors...
+	while (newMenu.length < 31) {
+		//store a random number between 0 and 70 in a variable
+		const index = Math.floor(Math.random() * 71);
+		//if the value of the chosen index already exsist in newMenu
+		if (newMenu.includes(allFlavors[index])) {
+			//do nothing
+		} else {
+			//otherwise, push the element to newMenu
+			newMenu.push(allFlavors[index])
+		}
+	}
+	//return the new array of 31 random items
+	return newMenu
 }
+
+console.log(getRandomFlavors(newFlavors, seasonalFlavors, regionalFlavors))
+
+
+
+
+
+
+
+
+
+
